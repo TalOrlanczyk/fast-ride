@@ -29,8 +29,8 @@ const RideCards = () => {
         <div className="cards-grid-template">
             {
                 rides.map(ride => (
-                    <Tooltip title={ride.remaining_tickets === 0 ? "No Tickets remaining": null}>
-                        <div key={ride.id} className="card card-bg" onClick={() => HandleIdUpdater(ride.id)} style={RideID === ride.id ? { backgroundColor: `${ride.zone.color}` } : null}>
+                    <Tooltip key={ride.id} title={ride.remaining_tickets === 0 ? "No Tickets remaining": null}>
+                        <div className="card card-bg" onClick={ride.remaining_tickets !== 0 ? () => HandleIdUpdater(ride.id): null} style={RideID === ride.id ? { backgroundColor: `${ride.zone.color}` } : null}>
                             <div style={ride.remaining_tickets !== 0 ? { borderTop: `5px solid ${ride.zone.color}` } : { borderTop: `5px solid #555858` }}>
                                 <span className="float-right text-grayish">{ride.zone.name}</span>
                             </div>

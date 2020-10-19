@@ -8,6 +8,7 @@ import OverlayDialog from './Components/OverlayDialog/OverlayDialog';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboard, faTimes } from '@fortawesome/free-solid-svg-icons';
 import Tooltip from './Components/Tooltip/Tooltip';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 const { Provider } = PINandRideContext;
 const App = () => {
@@ -54,14 +55,14 @@ const App = () => {
 
         <OverlayDialog onClose={() => setOpen(false)}>
           <div className="Dialog-Container text-white">
-              <div className="float-right full-width">
-                <FontAwesomeIcon icon={faTimes} color="white" onClick={() => setOpen(false)} />
-              </div>
+            <div className="float-right full-width">
+              <FontAwesomeIcon icon={faTimes} color="white" onClick={() => setOpen(false)} />
+            </div>
             <div className="Dialog-expanin">
               <span className="float-left ">Your Pin Code is:</span>
             </div>
             <Tooltip title="click to copy to clipboard">
-              <div className="card-title float-left" onClick={()=>copyToClipboard()}>
+              <div className="card-title float-left" onClick={() => copyToClipboard()}>
                 <h1 id="PIN" className=" text-center">{PIN}</h1>
               </div>
             </Tooltip>
@@ -79,7 +80,10 @@ const App = () => {
         HandleOwnTicets: (date) => HandleSubmitedTickes(date),
         HandleIdUpdater: (id) => setRideID(id)
       }}>
-        <HomePage />
+        <Switch >
+          <Route exact path='/' component={HomePage} />
+          <Redirect from="*" to="/" />
+        </Switch>
       </Provider>
     </>
   );
