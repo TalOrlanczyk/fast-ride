@@ -4,56 +4,20 @@ html, body {
 .App{
   padding:1rem
 }
-.float-right{
-  float: right;
-}
-.text-grayish{
-  color: rgb(140 139 139);
-}
-.text-white{
-  color: white;
-}
-.text-center{
-  text-align: center;
-}
-.card-bg{
-  background-color: #373737;
-}
-.pb-1{
-  padding-bottom: .5rem;
-}
-.card{
-  position: relative;
-  height: 30vh;
-}
-.ps-button{
-  position: absolute;
-  bottom: 0;
-}
-.max-prec-width{
-  width: 100%;
-}
-.half-width{
-  width: 50%;
-}
-.image-small{ 
-  height: auto;
-  vertical-align: middle;
-  width: 30px;
-}
-.va-middle{
-  vertical-align: middle;
-}
-.flex-row{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+
 .cards-grid-template{
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
+@media only screen and (max-width: 430px) {
+  .cards-grid-template{
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
 .input-height {
   height: 4.5vh;
 }
@@ -84,3 +48,19 @@ input:focus{
 }
 
 
+.Dialog-Container{
+  padding: 10px;
+}
+.Submit-mobile{
+  position: fixed;
+  height:40px;
+  bottom:0;
+  left: 0;
+  z-index: 1;
+  background-color: var(--grayish);
+  width:100%;
+  text-align:center;
+  font-size:22px;
+  box-shadow: 0px 4px 4px rgba(0,0,0,0.2);
+  transition:top .3s;
+}

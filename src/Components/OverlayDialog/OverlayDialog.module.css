@@ -1,0 +1,49 @@
+
+.Dialog {
+    position: fixed;
+    z-index: 1300;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    left: 0px;
+    
+  }
+  .InnerDialog{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    
+  }
+
+  .DialogCard{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    outline: 0;
+
+  }
+
+.DialogContent{
+  background-color: #373737;
+  width: 25rem;
+  border-radius: 8px;
+  height: 12rem;
+}
+
+
+@media only screen and (max-width: 430px) {
+
+  .DialogContent{
+    background-color: #373737;
+    width: 20rem;
+    border-radius: 8px;
+    height: 15em;
+  }
+}

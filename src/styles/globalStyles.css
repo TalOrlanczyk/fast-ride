@@ -1,0 +1,64 @@
+:root {
+  --grayish:rgb(101,101,101);
+  --backgroundColor: #373737
+}
+.float-left{
+  float: left;
+}
+
+.float-right{
+  float: right;
+}
+
+.text-grayish{
+  color: var(--grayish);
+}
+
+.text-white{
+  color: white;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.card-bg{
+  background-color: var(--backgroundColor);
+}
+
+.pb-1{
+  padding-bottom: .5rem;
+}
+
+.card{
+  position: relative;
+  height: 30vh;
+}
+.ps-button{
+  position: absolute;
+  bottom: 0;
+}
+
+.max-prec-width{
+  width: 100%;
+}
+
+.half-width{
+  width: 50%;
+}
+
+.image-small{ 
+  height: auto;
+  vertical-align: middle;
+  width: 30px;
+}
+
+.va-middle{
+  vertical-align: middle;
+}
+
+.flex-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
