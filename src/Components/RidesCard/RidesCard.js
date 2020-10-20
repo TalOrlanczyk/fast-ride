@@ -21,7 +21,7 @@ const RideCards = () => {
     }, []);
 
     const FormateDateTime = (date) => {
-        return new Date(date).toUTCString().substring(17, 22)
+        return `${new Date(date).getHours()}:${new Date(date).getMinutes()}`
     }
     if (isLoading) return <Spiner />
     return (

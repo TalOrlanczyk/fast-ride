@@ -17,14 +17,6 @@ html, body {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 }
-
-.input-height {
-  height: 4.5vh;
-}
-.input-height-mobile {
-  height: 4.5vh;
-  width: 90vw;
-}
 *::-webkit-scrollbar {
   width: 10px;
 }

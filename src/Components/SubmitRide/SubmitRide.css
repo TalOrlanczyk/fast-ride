@@ -1,0 +1,17 @@
+.input-height {
+    width: 15vw;
+    border: none;
+    padding: 0;
+    font-weight: bold;
+}
+
+.input-height-mobile {
+    width: 90vw;
+    padding: 0;
+    border: none;
+    font-weight: bold;
+}
+
+.submit-button,.input-height-mobile,.input-height{
+    height: 4.5vh;
+}
