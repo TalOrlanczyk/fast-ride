@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/fast-ride/static/css/main.6a88bab2.chunk.css",
-    "main.js": "/fast-ride/static/js/main.ca2061e2.chunk.js",
-    "main.js.map": "/fast-ride/static/js/main.ca2061e2.chunk.js.map",
+    "main.js": "/fast-ride/static/js/main.fe37218c.chunk.js",
+    "main.js.map": "/fast-ride/static/js/main.fe37218c.chunk.js.map",
     "runtime-main.js": "/fast-ride/static/js/runtime-main.b2288621.js",
     "runtime-main.js.map": "/fast-ride/static/js/runtime-main.b2288621.js.map",
     "static/js/2.940df63c.chunk.js": "/fast-ride/static/js/2.940df63c.chunk.js",
     "static/js/2.940df63c.chunk.js.map": "/fast-ride/static/js/2.940df63c.chunk.js.map",
     "index.html": "/fast-ride/index.html",
-    "precache-manifest.d2351217dfeacf40857bf6cd88c63550.js": "/fast-ride/precache-manifest.d2351217dfeacf40857bf6cd88c63550.js",
+    "precache-manifest.8e3d2712d8beb7f87b3df91293e3c30e.js": "/fast-ride/precache-manifest.8e3d2712d8beb7f87b3df91293e3c30e.js",
     "service-worker.js": "/fast-ride/service-worker.js",
     "static/css/main.6a88bab2.chunk.css.map": "/fast-ride/static/css/main.6a88bab2.chunk.css.map",
     "static/js/2.940df63c.chunk.js.LICENSE.txt": "/fast-ride/static/js/2.940df63c.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.b2288621.js",
     "static/js/2.940df63c.chunk.js",
     "static/css/main.6a88bab2.chunk.css",
-    "static/js/main.ca2061e2.chunk.js"
+    "static/js/main.fe37218c.chunk.js"
   ]
 }
