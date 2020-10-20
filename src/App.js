@@ -70,6 +70,7 @@ const App = () => {
           </div>
         </OverlayDialog>
       )}
+      <h1 className="text-center text-white">The Jungle™ FastRider Service</h1>
       <Provider
         value={{
           PIN: PIN,

@@ -10,7 +10,7 @@ const PCSubmit = ({ pinInput }) => {
   let history = useHistory();
   const isPinUnValid = (PIN) => {
     let tempPinArr = PIN.split("-");
-    if (tempPinArr.length === 0) return true;
+    if (tempPinArr.length !== 4) return true;
     if (tempPinArr[0] !== "JN") return true;
     let FirstLeter = getCalculationForASCII(ConvertToArray(tempPinArr[1]), 1);
     let SecondLetter = getCalculationForASCII(ConvertToArray(tempPinArr[2]), 1);
@@ -26,7 +26,7 @@ const PCSubmit = ({ pinInput }) => {
     if (ownTickects > 0) {
       return "can't have more then one tickte in a given time";
     } else if (isPinUnValid(pinInput)) {
-      return "Invalid input insert";
+      return "Invalid PIN format";
     } else {
       return;
     }
