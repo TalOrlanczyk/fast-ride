@@ -76,9 +76,8 @@ const App = () => {
         </>
       ) : (
         <>
-        <div className="text-center text-white font-bold p1">Sorry but the service is close right now</div>
-        <div className="text-center text-white font-bold pb1">The service work between: 9:00 - 19:00 UTC</div>
-        <div className="text-center text-white font-bold">please come tommrow</div>
+        <div className="text-center text-white font-bold"><h2>Sorry but the service is close right now </h2></div>
+        <div className="text-center text-white font-bold "><h3>The service work between: 9:00 - 19:00 UTC</h3></div>
         </>
       )}
     </>
