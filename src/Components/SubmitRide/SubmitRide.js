@@ -44,6 +44,7 @@ const SubmitRide = () => {
       ) : (
         <PCSubmit pinInput={pinInput} />
       )}
+      {/* <MobileSubmit pinInput={pinInput} /> */}
     </div>
   );
 };

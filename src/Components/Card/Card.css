@@ -4,5 +4,9 @@
 
 .card {
   position: relative;
-  min-height: 30vh;
+  min-height: 19rem;
+}
+.card-moblie{
+  position: relative;
+  min-height: 15rem;
 }

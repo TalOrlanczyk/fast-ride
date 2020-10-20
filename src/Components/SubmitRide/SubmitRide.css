@@ -10,11 +10,13 @@
     padding: 0;
     border: none;
     font-weight: bold;
+    height: 3rem;
 }
 
-.input-height-mobile,.input-height{
-    height: 4.5vh;
+.input-height{
+    height: 3rem;
 }
-.input-height-mobile:focus,.input-height:focus{
-    height: 4.5vh;
+
+.input-height-mobile:focus{
+    height: 3rem;
 }

@@ -1,11 +1,12 @@
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { IsMobile } from "../../utils/gadgetUtils";
 import OverlayDialog from "../OverlayDialog/OverlayDialog";
 import Tooltip from "../Tooltip/Tooltip";
 import './OpenDialog.css'
 
-const OpenDialog = ({ open, setOpen, PIN }) => {
+const OpenDialog = ({ open, setOpen, PIN,CopyToClipboard }) => {
   return (
     <>
       {open && (
@@ -22,8 +23,8 @@ const OpenDialog = ({ open, setOpen, PIN }) => {
             <div className="Dialog-expanin">
               <span className="float-left ">Your Pin Code is:</span>
             </div>
-            <Tooltip title="click to copy to clipboard">
-              <div className="card-title float-left">
+            <Tooltip title={!IsMobile() && "click to copy to clipboard"}>
+              <div id="PIN-Contanier" className="card-title float-left" onClick={()=>CopyToClipboard('PIN')}>
                 <h1 id="PIN" className=" text-center">
                   {PIN}
                 </h1>

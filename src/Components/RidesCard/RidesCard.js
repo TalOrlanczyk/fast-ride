@@ -49,8 +49,8 @@ const RideCards = () => {
           />
           <Card.Title title={ride.name} />
           {ride.remaining_tickets === 0 ? (
-            <div>
-              <span className="text-grayish text-center">Out of tickets</span>
+            <div className="text-center font-bold">
+              <h3 className="text-light-gray">Out of tickets</h3>
             </div>
           ) : null}
           <div className="flex-row ps-button max-prec-width text-center pb-1">

@@ -48,15 +48,39 @@ const App = () => {
     if (currentHourUTC < 9 || currentHourUTC >= 19) setIsServiceClose(true);
   };
   useEffect(() => {
-    CheckifCloseTime();
+    // CheckifCloseTime();
     setPIN(PinGenerator());
   }, []);
+
+  const CopyToClipboard = (containerid) => {
+    let r = document.createRange();
+    r.selectNode(document.getElementById(containerid));
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(r);
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    if (!document.getElementById("Copied")) {
+      let div = document.createElement("div");
+      div.innerHTML = "copy to clipboard";
+      div.id = "Copied";
+      document.getElementById("PIN-Contanier").appendChild(div);
+      setTimeout(() => {
+        if (document.getElementById("PIN-Contanier"))
+          document.getElementById("PIN-Contanier").removeChild(div);
+      }, 2000);
+    }
+  };
   return (
     <>
       <h1 className="text-center text-white">The Jungle™ FastRider Service</h1>
       {!isServiceClose ? (
         <>
-          <OpenDialog PIN={PIN} open={open} setOpen={setOpen} />
+          <OpenDialog
+            PIN={PIN}
+            open={open}
+            setOpen={setOpen}
+            CopyToClipboard={CopyToClipboard}
+          />
           <Provider
             value={{
               PIN: PIN,
@@ -75,8 +99,12 @@ const App = () => {
         </>
       ) : (
         <>
-        <div className="text-center text-white font-bold"><h2>Sorry but the service is close right now </h2></div>
-        <div className="text-center text-white font-bold "><h3>The service work between: 9:00 - 19:00 UTC</h3></div>
+          <div className="text-center text-white font-bold">
+            <h2>Sorry but the service is close right now </h2>
+          </div>
+          <div className="text-center text-white font-bold ">
+            <h3>The service work between: 9:00 - 19:00 UTC</h3>
+          </div>
         </>
       )}
     </>

@@ -30,7 +30,9 @@
   position: absolute;
   bottom: 0;
 }
-
+.text-light-gray{
+  color: rgb(116, 116, 116);
+}
 .max-prec-width {
   width: 100%;
 }
