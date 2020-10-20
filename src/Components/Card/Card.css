@@ -1,0 +1,8 @@
+.card-bg {
+  background-color: var(--backgroundColor);
+}
+
+.card {
+  position: relative;
+  height: 30vh;
+}

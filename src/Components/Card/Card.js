@@ -1,6 +1,7 @@
 import React from "react";
 import SubTitle from "./SubTitle/SubTitle";
 import Title from "./Title/Title";
+import './Card.css'
 
 const Card = ({ children, handleOnClick, cardSizeClass, style }) => {
   return (

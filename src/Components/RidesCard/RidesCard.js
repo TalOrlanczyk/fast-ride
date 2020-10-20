@@ -4,9 +4,9 @@ import Spiner from "../Spiner/Spiner";
 import ticket_g from "../../images/ticket_g.png";
 import clock_g from "../../images/clock_g.png";
 import { getAllRides } from "../../api/FastRider";
-import Tooltip from "../Tooltip/Tooltip";
 import Card from "../Card/Card";
 import { FormateDateTime } from "../../utils/dateUtils";
+import './RideCards.css';
 
 const RideCards = () => {
   const { RideID, HandleIdUpdater, HandleOwnTicets } = useContext(
