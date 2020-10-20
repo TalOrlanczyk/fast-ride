@@ -15,3 +15,6 @@
 .input-height-mobile,.input-height{
     height: 4.5vh;
 }
+.input-height-mobile:focus,.input-height:focus{
+    height: 4.5vh;
+}

@@ -34,7 +34,9 @@ const PCSubmit = ({ pinInput }) => {
   };
 
   const handleSubmit = () => {
-    history.push("/SubmitedOrder");
+    history.push({
+      pathname:'/SubmitedOrder',
+      state: {pinCode: pinInput}})
   };
   return (
     <>

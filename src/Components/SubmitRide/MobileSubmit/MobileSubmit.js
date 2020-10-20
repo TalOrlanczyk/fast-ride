@@ -7,7 +7,7 @@ import Tooltip from '../../Tooltip/Tooltip';
 import './MobileSubmit.css'
 
 const MobileSubmit = ({pinInput}) => {
-    const { PIN, ownTickects } = useContext(PINandRideContext);
+    const { RideID, ownTickects } = useContext(PINandRideContext);
     const [isHide, setIsHide] = useState(true);
     let history = useHistory();
     let prev = 0;
@@ -42,18 +42,17 @@ const MobileSubmit = ({pinInput}) => {
         return false;
     };
 
-
     const TooltipSubmit = () => {
-        if (ownTickects > 0) {
-            return "can't have more then one tickte in a given time";
-        } else if (isPinUnValid(pinInput)) {
-            return "Invalid input insert";
-        } else {
-            return;
-        }
-    }
+        if (ownTickects > 0)
+          return "can't have more then one tickte in a given time";
+        else if (isPinUnValid(pinInput)) return "Invalid PIN format";
+        else if (RideID === 0) return "please pick one ride to submit";
+        else return;
+      };
     const handleSubmit = () => {
-        history.push('/SubmitedOrder')
+        history.push({
+            pathname:'/SubmitedOrder',
+            state: {pinCode: pinInput}})
     }
     return (
         <>
