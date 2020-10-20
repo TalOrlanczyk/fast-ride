@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboard, faTimes } from '@fortawesome/free-solid-svg-icons';
 import Tooltip from './Components/Tooltip/Tooltip';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import OrderTransaction from './Components/OrderTransaction/OrderTransaction';
 
 const { Provider } = PINandRideContext;
 const App = () => {
@@ -30,22 +31,7 @@ const App = () => {
     setTimeout(() => console.log("rin"), milisecondToWait)
   };
 
-  const copyToClipboard = () => {
-    // let pin = document.getElementById("PIN");
-    if (document.selection) {
-      var range = document.body.createTextRange();
-      range.moveToElementText(document.getElementById("PIN"));
-      range.select().createTextRange();
-      document.execCommand("copy");
-    } else if (window.getSelection) {
-      var range = document.createRange();
-      range.selectNode(document.getElementById("PIN"));
-      window.getSelection().addRange(range);
-      document.execCommand("copy");
-      alert("Text has been copied, now paste in the text-area")
-    }
-    document.execCommand("copy");
-  }
+  
   useEffect(() => {
     setPIN(PinGenerator());
   }, [])
@@ -62,7 +48,7 @@ const App = () => {
               <span className="float-left ">Your Pin Code is:</span>
             </div>
             <Tooltip title="click to copy to clipboard">
-              <div className="card-title float-left" onClick={() => copyToClipboard()}>
+              <div className="card-title float-left" >
                 <h1 id="PIN" className=" text-center">{PIN}</h1>
               </div>
             </Tooltip>
@@ -77,11 +63,12 @@ const App = () => {
         PIN: PIN,
         RideID: rideID,
         ownTickects: ownTicktes,
-        HandleOwnTicets: (date) => HandleSubmitedTickes(date),
+        HandleOwnTickets: (date) => HandleSubmitedTickes(date),
         HandleIdUpdater: (id) => setRideID(id)
       }}>
         <Switch >
           <Route exact path='/' component={HomePage} />
+          <Route exact path ='/SubmitedOrder' component={OrderTransaction}/>
           <Redirect from="*" to="/" />
         </Switch>
       </Provider>

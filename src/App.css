@@ -21,6 +21,10 @@ html, body {
 .input-height {
   height: 4.5vh;
 }
+.input-height-mobile {
+  height: 4.5vh;
+  width: 90vw;
+}
 *::-webkit-scrollbar {
   width: 10px;
 }
@@ -62,5 +66,8 @@ input:focus{
   text-align:center;
   font-size:22px;
   box-shadow: 0px 4px 4px rgba(0,0,0,0.2);
-  transition:top .3s;
+  transition:bottom .3s;
+}
+.hide{
+  bottom: -40px;
 }

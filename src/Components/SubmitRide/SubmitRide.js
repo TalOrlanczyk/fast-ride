@@ -9,33 +9,8 @@ import PCSubmit from './PCSubmit/PCSubmit.js';
 
 const SubmitRide = () => {
     const { PIN } = useContext(PINandRideContext);
-    const [isHide, setIsHide] = useState(true);
     const [pinInput, setPinInput] = useState("");
-    let prev;
-    useEffect(() => {
-        window.addEventListener('scroll', () => hideBar());
-        return () => {
-            window.removeEventListener('scroll', () => hideBar());
-        }
-    }, []);
-    const hideBar = () => {
-        window.scrollY > prev ? setIsHide(true) : setIsHide(false)
-
-        prev = window.scrollY;
-    };
-    const isPinUnValid = (PIN) => {
-        let tempPinArr = PIN.split("-");
-        if (tempPinArr.length === 0)
-            return true;
-        if (tempPinArr[0] !== "JN")
-            return true;
-        let FirstLeter = getCalculationForASCII(ConvertToArray(tempPinArr[1]), 1);
-        let SecondLetter = getCalculationForASCII(ConvertToArray(tempPinArr[2]), 1);
-        if (PIN !== `JN-${tempPinArr[1]}-${tempPinArr[2]}-${FirstLeter + SecondLetter}`)
-            return true;
-        return false;
-    };
-
+  
     const pinInputHandler = (e) => {
         if ((e.currentTarget.value).length === 2 || (e.currentTarget.value).length === 7 || (e.currentTarget.value).length === 12)
             setPinInput(e.currentTarget.value + '-');
@@ -52,8 +27,9 @@ const SubmitRide = () => {
 
     return (
         <div>
-            <input placeholder="PIN" className="input-height" value={pinInput} onChange={(e) => pinInputHandler(e)} maxLength={15} onKeyUp={(e) => HandleDelete(e)} />
-            {IsMobile() ? <MobileSubmit/> : <PCSubmit/>}
+            <input placeholder="PIN" className={IsMobile() ?"input-height-mobile":"input-height" } value={pinInput} onChange={(e) => pinInputHandler(e)} maxLength={15} onKeyUp={(e) => HandleDelete(e)} />
+            {IsMobile() ? <MobileSubmit pinInput={pinInput}/> : <PCSubmit pinInput={pinInput}/>}
+            {/* <MobileSubmit/> */}
         </div>
     )
 }

@@ -14,7 +14,6 @@ const RideCards = () => {
         getAllRides()
             .then(response => {
                 setRides(response.data);
-                HandleOwnTicets("2020-10-19T20:15:00.000+03:00")
             })
             .finally(() => {
                 setIsLoading(false)
@@ -29,14 +28,19 @@ const RideCards = () => {
         <div className="cards-grid-template">
             {
                 rides.map(ride => (
-                    <Tooltip key={ride.id} title={ride.remaining_tickets === 0 ? "No Tickets remaining": null}>
-                        <div className="card card-bg" onClick={ride.remaining_tickets !== 0 ? () => HandleIdUpdater(ride.id): null} style={RideID === ride.id ? { backgroundColor: `${ride.zone.color}` } : null}>
+                   
+                        <div key={ride.id} className="card card-bg" onClick={ride.remaining_tickets !== 0 ? () => HandleIdUpdater(ride.id): null} style={RideID === ride.id ? { backgroundColor: `${ride.zone.color}` } : null}>
                             <div style={ride.remaining_tickets !== 0 ? { borderTop: `5px solid ${ride.zone.color}` } : { borderTop: `5px solid #555858` }}>
                                 <span className="float-right text-grayish">{ride.zone.name}</span>
                             </div>
                             <div className="card-title">
                                 <h1 className="text-white text-center">{ride.name}</h1>
                             </div>
+                            {ride.remaining_tickets === 0 ? (
+                                <div>
+                                    <span className="text-grayish text-center">Out of tickets</span>
+                                </div>
+                            ): null}
                             <div className="flex-row ps-button max-prec-width text-center pb-1">
                                 <div className="ticket-contatiner half-width">
                                     <img className="image-small" src={ticket_g} alt="number of ticket left" />
@@ -48,7 +52,7 @@ const RideCards = () => {
                                 </div>
                             </div>
                         </div>
-                    </Tooltip>
+                    
                 ))
             }
         </div>

@@ -1,22 +1,30 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { PINandRideContext } from '../../../contextAPI/PinAndRideContext';
 import { ConvertToArray } from '../../../utils/numberUtils';
 import { getCalculationForASCII } from '../../../utils/stringUtils';
 import Tooltip from '../../Tooltip/Tooltip';
 
-const MobileSubmit = () => {
-    const { PIN,ownTickects } = useContext(PINandRideContext);
+const MobileSubmit = ({pinInput}) => {
+    const { PIN, ownTickects } = useContext(PINandRideContext);
     const [isHide, setIsHide] = useState(true);
-    const [pinInput, setPinInput] = useState("");
-    let prev;
+    let history = useHistory();
+    let prev = 0;
     useEffect(() => {
-        window.addEventListener('scroll', () => hideBar());
+        window.addEventListener('scroll', ()=>hideBar());
         return () => {
-            window.removeEventListener('scroll', () => hideBar());
+            window.removeEventListener('scroll',() =>hideBar());
         }
     }, []);
     const hideBar = () => {
-        window.scrollY > prev ? setIsHide(true) : setIsHide(false)
+        if (window.scrollY > prev) {
+            setIsHide(true)
+        }
+        else {
+
+             setIsHide(false)
+        }
+
 
         prev = window.scrollY;
     };
@@ -37,21 +45,24 @@ const MobileSubmit = () => {
     const TooltipSubmit = () => {
         if (ownTickects > 0) {
             return "can't have more then one tickte in a given time";
-        } else if (isPinUnValid(pinInput)){
+        } else if (isPinUnValid(pinInput)) {
             return "Invalid input insert";
-        } else{
+        } else {
             return;
         }
     }
+    const handleSubmit = () => {
+        history.push('/SubmitedOrder')
+    }
     return (
         <>
-            {!isHide && (
-                    <Tooltip title={TooltipSubmit()}>
-                        <button  className="Submit-mobile" onClick={() => { console.log("rin") }} disabled={isPinUnValid(pinInput) || ownTickects > 0}>
-                            Submit
+            
+                <Tooltip title={TooltipSubmit()}>
+                    <button className={`Submit-mobile ${isHide ? "hide" : "active"}`} onClick={() => { handleSubmit() }} disabled={isPinUnValid(pinInput) || ownTickects > 0}>
+                        Submit
                         </button>
-                    </Tooltip>
-            )}
+                </Tooltip>
+            
         </>
     )
 }
