@@ -4,6 +4,7 @@ import { PINandRideContext } from '../../../contextAPI/PinAndRideContext';
 import { ConvertToArray } from '../../../utils/numberUtils';
 import { getCalculationForASCII } from '../../../utils/stringUtils';
 import Tooltip from '../../Tooltip/Tooltip';
+import './MobileSubmit.css'
 
 const MobileSubmit = ({pinInput}) => {
     const { PIN, ownTickects } = useContext(PINandRideContext);
@@ -30,7 +31,7 @@ const MobileSubmit = ({pinInput}) => {
     };
     const isPinUnValid = (PIN) => {
         let tempPinArr = PIN.split("-");
-        if (tempPinArr.length === 0)
+        if (tempPinArr.length !== 4)
             return true;
         if (tempPinArr[0] !== "JN")
             return true;

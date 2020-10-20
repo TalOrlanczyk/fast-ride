@@ -1,3 +1,12 @@
 .width-for-containers{
     width: 25rem;
 }
+.card-hight{
+    height: 15rem;
+}
+
+@media only screen and (max-width: 430px) {
+    .width-for-containers{
+        width: 20rem;
+    }
+  }

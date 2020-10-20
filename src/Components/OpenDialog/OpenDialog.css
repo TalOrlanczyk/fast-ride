@@ -1,0 +1,9 @@
+.dialog-button-close {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.Dialog-Container {
+  padding: 10px;
+}

@@ -7,16 +7,12 @@ import Card from "../Card/Card";
 import Spiner from "../Spiner/Spiner";
 import { useHistory } from "react-router-dom";
 import { FormateDateTime } from "../../utils/dateUtils";
-import './OrderTransaction.css'
+import "./OrderTransaction.css";
 
 const OrderTransaction = () => {
-  const {
-    PIN,
-    RideID,
-    ownTickects,
-    HandleOwnTickets,
-    HandleIdUpdater,
-  } = useContext(PINandRideContext);
+  const { PIN, RideID, ownTickects, HandleOwnTickets } = useContext(
+    PINandRideContext
+  );
   const [RideOrder, setRideOrder] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const history = useHistory();
@@ -25,7 +21,6 @@ const OrderTransaction = () => {
       postGetRideTicket(PIN, RideID)
         .then((response) => {
           HandleOwnTickets(response.data.return_time);
-          HandleIdUpdater(0);
           setRideOrder(response.data);
         })
         .finally(() => {
@@ -48,17 +43,17 @@ const OrderTransaction = () => {
         />
       </div>
       <div className="flex-center">
-        <Card cardSizeClass="width-for-containers">
-            <Card.SubTitle
-              title={RideOrder.ride.zone.name}
-              style={{ borderTop: `5px solid ${RideOrder.ride.zone.color}` }}
-            />
-            <Card.SubTitle
-              title={RideOrder.ride.name}
-              titleFloatSideClass="none"
-              titleColorClass="text-white"
-            />
-          <div className="p1 text-center">
+        <Card cardSizeClass="width-for-containers  card-hight">
+          <Card.SubTitle
+            title={RideOrder.ride.zone.name}
+            style={{ borderTop: `5px solid ${RideOrder.ride.zone.color}` }}
+          />
+          <Card.SubTitle
+            title={RideOrder.ride.name}
+            titleFloatSideClass="float-left"
+            titleColorClass="text-white"
+          />
+          <div className="p1 text-center mt3">
             <span className="text-grayish">Returm At</span>
             <h1 className="text-white font-bold no-margin">
               {FormateDateTime(RideOrder.return_time)}

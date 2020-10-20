@@ -1,6 +1,7 @@
 :root {
   --grayish:rgb(101,101,101);
-  --backgroundColor: #373737
+  --backgroundColor: #373737;
+  --buttonColor:#4c4c4b;
 }
 .float-left{
   float: left;
@@ -66,6 +67,9 @@
 .p1{
   padding: 1rem;
 }
+.pb1{
+  padding-bottom: 1rem;
+}
 .p-3 {
   padding: 0.3rem;
 }
@@ -83,4 +87,8 @@
 }
 .no-margin{
   margin: 0
+}
+
+.mt3{
+  margin-top: 3rem;
 }

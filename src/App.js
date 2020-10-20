@@ -10,6 +10,7 @@ import { faClipboard, faTimes } from "@fortawesome/free-solid-svg-icons";
 import Tooltip from "./Components/Tooltip/Tooltip";
 import { Redirect, Route, Switch } from "react-router-dom";
 import OrderTransaction from "./Components/OrderTransaction/OrderTransaction";
+import OpenDialog from "./Components/OpenDialog/OpenDialog";
 
 const { Provider } = PINandRideContext;
 const App = () => {
@@ -17,6 +18,8 @@ const App = () => {
   const [PIN, setPIN] = useState("");
   const [ownTicktes, setOwnTickets] = useState(0);
   const [open, setOpen] = useState(true);
+  const [isServiceClose, setIsServiceClose] = useState(true);
+
   const PinGenerator = () => {
     let tempFirst4digit = Math.floor(1000 + Math.random() * 9000);
     let tempSecond4digit = Math.floor(1000 + Math.random() * 9000);
@@ -33,59 +36,51 @@ const App = () => {
     setOwnTickets(1);
     let dateWaited = new Date(returnTime);
     let milisecondToWait = dateWaited.getTime() - Date.now();
-    setTimeout(() => setOwnTickets(0), milisecondToWait);
+    setTimeout(() => {
+      setOwnTickets(0);
+      setRideID(0);
+    }, milisecondToWait);
   };
 
+  const CheckifCloseTime = () => {
+    let currentDate = new Date();
+    currentDate.setHours(currentDate.getHours() + 5);
+    let currentHourUTC = currentDate.getUTCHours();
+    if (currentHourUTC < 9 || currentHourUTC >= 19) setIsServiceClose(true);
+  };
   useEffect(() => {
+    CheckifCloseTime();
     setPIN(PinGenerator());
   }, []);
   return (
     <>
-      {open && (
-        <OverlayDialog onClose={() => setOpen(false)}>
-          <div className="Dialog-Container text-white">
-            <div className="float-right full-width">
-              <FontAwesomeIcon
-                icon={faTimes}
-                color="white"
-                onClick={() => setOpen(false)}
-              />
-            </div>
-            <div className="Dialog-expanin">
-              <span className="float-left ">Your Pin Code is:</span>
-            </div>
-            <Tooltip title="click to copy to clipboard">
-              <div className="card-title float-left">
-                <h1 id="PIN" className=" text-center">
-                  {PIN}
-                </h1>
-              </div>
-            </Tooltip>
-            <div className="card-title float-left ">
-              <span>
-                <strong>Remember</strong> you need to keep this PIN code to
-                order the ticket
-              </span>
-            </div>
-          </div>
-        </OverlayDialog>
-      )}
       <h1 className="text-center text-white">The Jungle™ FastRider Service</h1>
-      <Provider
-        value={{
-          PIN: PIN,
-          RideID: rideID,
-          ownTickects: ownTicktes,
-          HandleOwnTickets: (date) => HandleSubmitedTickes(date),
-          HandleIdUpdater: (id) => setRideID(id),
-        }}
-      >
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/SubmitedOrder" component={OrderTransaction} />
-          <Redirect from="*" to="/" />
-        </Switch>
-      </Provider>
+      {!isServiceClose ? (
+        <>
+          <OpenDialog PIN={PIN} open={open} setOpen={setOpen} />
+          <Provider
+            value={{
+              PIN: PIN,
+              RideID: rideID,
+              ownTickects: ownTicktes,
+              HandleOwnTickets: (date) => HandleSubmitedTickes(date),
+              HandleIdUpdater: (id) => setRideID(id),
+            }}
+          >
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <Route exact path="/SubmitedOrder" component={OrderTransaction} />
+              <Redirect from="*" to="/" />
+            </Switch>
+          </Provider>
+        </>
+      ) : (
+        <>
+        <div className="text-center text-white font-bold p1">Sorry but the service is close right now</div>
+        <div className="text-center text-white font-bold pb1">The service work between: 9:00 - 19:00 UTC</div>
+        <div className="text-center text-white font-bold">please come tommrow</div>
+        </>
+      )}
     </>
   );
 };
