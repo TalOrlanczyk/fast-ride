@@ -4,5 +4,5 @@
 
 .card {
   position: relative;
-  height: 30vh;
+  min-height: 30vh;
 }
