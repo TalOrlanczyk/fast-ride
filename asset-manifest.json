@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/fast-ride/static/css/main.bd5389bf.chunk.css",
+    "main.css": "/fast-ride/static/css/main.96aea6b6.chunk.css",
     "main.js": "/fast-ride/static/js/main.ca2061e2.chunk.js",
     "main.js.map": "/fast-ride/static/js/main.ca2061e2.chunk.js.map",
     "runtime-main.js": "/fast-ride/static/js/runtime-main.b2288621.js",
@@ -8,15 +8,15 @@
     "static/js/2.940df63c.chunk.js": "/fast-ride/static/js/2.940df63c.chunk.js",
     "static/js/2.940df63c.chunk.js.map": "/fast-ride/static/js/2.940df63c.chunk.js.map",
     "index.html": "/fast-ride/index.html",
-    "precache-manifest.e998b1b09afdb489c6faf5319428e066.js": "/fast-ride/precache-manifest.e998b1b09afdb489c6faf5319428e066.js",
+    "precache-manifest.43c5498b0bef75086f37c90008d5138b.js": "/fast-ride/precache-manifest.43c5498b0bef75086f37c90008d5138b.js",
     "service-worker.js": "/fast-ride/service-worker.js",
-    "static/css/main.bd5389bf.chunk.css.map": "/fast-ride/static/css/main.bd5389bf.chunk.css.map",
+    "static/css/main.96aea6b6.chunk.css.map": "/fast-ride/static/css/main.96aea6b6.chunk.css.map",
     "static/js/2.940df63c.chunk.js.LICENSE.txt": "/fast-ride/static/js/2.940df63c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b2288621.js",
     "static/js/2.940df63c.chunk.js",
-    "static/css/main.bd5389bf.chunk.css",
+    "static/css/main.96aea6b6.chunk.css",
     "static/js/main.ca2061e2.chunk.js"
   ]
 }
