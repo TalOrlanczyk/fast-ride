@@ -5,6 +5,8 @@ import ticket_g from "../../images/ticket_g.png";
 import clock_g from "../../images/clock_g.png";
 import { getAllRides } from "../../api/FastRider";
 import Tooltip from "../Tooltip/Tooltip";
+import Card from "../Card/Card";
+import { FormateDateTime } from "../../utils/dateUtils";
 
 const RideCards = () => {
   const { RideID, HandleIdUpdater, HandleOwnTicets } = useContext(
@@ -22,17 +24,13 @@ const RideCards = () => {
       });
   }, []);
 
-  const FormateDateTime = (date) => {
-    return `${new Date(date).getHours()}:${new Date(date).getMinutes()}`;
-  };
   if (isLoading) return <Spiner />;
   return (
     <div className="cards-grid-template">
       {rides.map((ride) => (
-        <div
+        <Card
           key={ride.id}
-          className="card card-bg"
-          onClick={
+          handleOnClick={
             ride.remaining_tickets !== 0 ? () => HandleIdUpdater(ride.id) : null
           }
           style={
@@ -41,18 +39,15 @@ const RideCards = () => {
               : null
           }
         >
-          <div
+          <Card.SubTitle
+            title={ride.zone.name}
             style={
               ride.remaining_tickets !== 0
                 ? { borderTop: `5px solid ${ride.zone.color}` }
                 : { borderTop: `5px solid #555858` }
             }
-          >
-            <span className="float-right text-grayish">{ride.zone.name}</span>
-          </div>
-          <div className="card-title">
-            <h1 className="text-white text-center">{ride.name}</h1>
-          </div>
+          />
+          <Card.Title title={ride.name} />
           {ride.remaining_tickets === 0 ? (
             <div>
               <span className="text-grayish text-center">Out of tickets</span>
@@ -76,9 +71,10 @@ const RideCards = () => {
               </span>
             </div>
           </div>
-        </div>
+        </Card>
       ))}
     </div>
   );
 };
+
 export default RideCards;

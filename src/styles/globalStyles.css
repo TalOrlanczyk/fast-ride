@@ -77,3 +77,10 @@
   justify-content: center;
   align-items: center;
 }
+
+.font-bold{
+  font-weight: bold;
+}
+.no-margin{
+  margin: 0
+}
