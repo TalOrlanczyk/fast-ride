@@ -18,7 +18,7 @@ const App = () => {
   const [PIN, setPIN] = useState("");
   const [ownTicktes, setOwnTickets] = useState(0);
   const [open, setOpen] = useState(true);
-  const [isServiceClose, setIsServiceClose] = useState(true);
+  const [isServiceClose, setIsServiceClose] = useState(false);
 
   const PinGenerator = () => {
     let tempFirst4digit = Math.floor(1000 + Math.random() * 9000);
@@ -44,7 +44,6 @@ const App = () => {
 
   const CheckifCloseTime = () => {
     let currentDate = new Date();
-    currentDate.setHours(currentDate.getHours() + 5);
     let currentHourUTC = currentDate.getUTCHours();
     if (currentHourUTC < 9 || currentHourUTC >= 19) setIsServiceClose(true);
   };
