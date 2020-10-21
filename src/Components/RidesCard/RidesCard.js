@@ -5,11 +5,15 @@ import ticket_g from "../../images/ticket_g.png";
 import clock_g from "../../images/clock_g.png";
 import { getAllRides } from "../../api/FastRider";
 import Card from "../Card/Card";
-import { FormateDateTime, setTimeOutHandler, SortByDate } from "../../utils/dateUtils";
+import {
+  FormateDateTime,
+  setTimeOutHandler,
+  SortByDate,
+} from "../../utils/dateUtils";
 import "./RideCards.css";
 
 const RideCards = () => {
-  const { RideID, HandleIdUpdater } = useContext(PINandRideContext);
+  const { RideID, HandleIdUpdater, ownTickects } = useContext(PINandRideContext);
   const [rides, setRides] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -28,9 +32,11 @@ const RideCards = () => {
           let mostEarlyRide = tempData.sort((a, b) => {
             return SortByDate(a.return_time, b.return_time);
           });
-          setTimeOutHandler(mostEarlyRide[0].return_time, ()=> {
-            getRides();
-          }, 60000)
+          setTimeOutHandler(
+            mostEarlyRide[0].return_time,
+            () => {
+              getRides();
+            });
         });
     };
     getRides();
@@ -43,8 +49,8 @@ const RideCards = () => {
         <Card
           key={ride.id}
           handleOnClick={
-            ride.remaining_tickets !== 0
-              ? RideID === 0
+            ride.remaining_tickets !== 0 && ownTickects === 0
+              ? RideID !== ride.id
                 ? () => HandleIdUpdater(ride.id)
                 : () => HandleIdUpdater(0)
               : null

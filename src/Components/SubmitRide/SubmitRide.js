@@ -10,6 +10,7 @@ import submit from "../../images/submit.png";
 import submit_g from "../../images/submit_g.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import InfoSnackbar from "../InfoSnackbar/InfoSnackbar";
 
 const SubmitRide = () => {
   const { PIN, RideID, ownTickects } = useContext(PINandRideContext);
@@ -58,14 +59,7 @@ const SubmitRide = () => {
   return (
     <>
       {checkIsDisabled() ? (
-        <div className="info text-white m-auto text-center">
-          {TooltipSubmit()}
-          <FontAwesomeIcon
-            className="float-left"
-            icon={faInfoCircle}
-            color="white"
-          />
-        </div>
+        <InfoSnackbar content={TooltipSubmit()}/>
       ) : null}
       <div className="text-center p1">
         <input

@@ -14,7 +14,6 @@ const App = () => {
   const [rideID, setRideID] = useState(0);
   const [PIN, setPIN] = useState("");
   const [ownTicktes, setOwnTickets] = useState(0);
-  const [open, setOpen] = useState(true);
   const [isServiceClose, setIsServiceClose] = useState(false);
 
   const PinGenerator = () => {
@@ -47,24 +46,6 @@ const App = () => {
     setPIN(PinGenerator());
   }, []);
 
-  const CopyToClipboard = (containerid) => {
-    let r = document.createRange();
-    r.selectNode(document.getElementById(containerid));
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(r);
-    document.execCommand("copy");
-    window.getSelection().removeAllRanges();
-    if (!document.getElementById("Copied")) {
-      let div = document.createElement("div");
-      div.innerHTML = "copy to clipboard";
-      div.id = "Copied";
-      document.getElementById("PIN-Contanier").appendChild(div);
-      setTimeout(() => {
-        if (document.getElementById("PIN-Contanier"))
-          document.getElementById("PIN-Contanier").removeChild(div);
-      }, 2500);
-    }
-  };
   return (
     <>
       <h1 className="text-center text-white">The Jungle™ FastRider Service</h1>
@@ -72,9 +53,6 @@ const App = () => {
         <>
           <OpenDialog
             PIN={PIN}
-            open={open}
-            setOpen={setOpen}
-            CopyToClipboard={CopyToClipboard}
           />
           <Provider
             value={{

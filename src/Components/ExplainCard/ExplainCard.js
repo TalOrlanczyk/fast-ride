@@ -1,5 +1,5 @@
 import React from "react";
-
+import './ExplainCard.css'
 const ExplainCard = ({img,imgAlt,content,cardClassName}) => {
   return (
     <div className={`ticket-explain-container text-center ${cardClassName ? cardClassName: ""}`}>

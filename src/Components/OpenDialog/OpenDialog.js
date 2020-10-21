@@ -1,12 +1,31 @@
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useState } from "react";
 import { IsMobile } from "../../utils/gadgetUtils";
 import OverlayDialog from "../OverlayDialog/OverlayDialog";
 import Tooltip from "../Tooltip/Tooltip";
 import './OpenDialog.css'
 
-const OpenDialog = ({ open, setOpen, PIN,CopyToClipboard }) => {
+const OpenDialog = ({ PIN }) => {
+  const [open, setOpen] = useState(true);
+  const CopyToClipboard = (containerid) => {
+    let r = document.createRange();
+    r.selectNode(document.getElementById(containerid));
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(r);
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    if (!document.getElementById("Copied")) {
+      let div = document.createElement("div");
+      div.innerHTML = "copy to clipboard";
+      div.id = "Copied";
+      document.getElementById("PIN-Contanier").appendChild(div);
+      setTimeout(() => {
+        if (document.getElementById("PIN-Contanier"))
+          document.getElementById("PIN-Contanier").removeChild(div);
+      }, 2500);
+    }
+  };
   return (
     <>
       {open && (

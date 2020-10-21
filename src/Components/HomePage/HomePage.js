@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import ticket from "../../images/ticket.png";
 import clock from "../../images/clock.png";
 import submit from "../../images/submit.png";
-import { PINandRideContext } from "../../contextAPI/PinAndRideContext";
 import RideCards from "../RidesCard/RidesCard";
 import SubmitRide from "../SubmitRide/SubmitRide";
 import ExplainCard from "../ExplainCard/ExplainCard";

@@ -29,8 +29,10 @@ const OrderTransaction = () => {
         });
     } else {
       history.push("/");
+      
     }
   }, []);
+
   if (isLoading) return <Spiner />;
   return (
     <div className="div">
