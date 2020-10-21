@@ -38,7 +38,7 @@ const App = () => {
 
   const CheckifCloseTime = () => {
     let currentDate = new Date();
-    let currentHour = currentDate.getHours();
+    let currentHour = currentDate.getUTCHours();
     if (currentHour < 9 || currentHour >= 19) setIsServiceClose(true);
   };
   useEffect(() => {
