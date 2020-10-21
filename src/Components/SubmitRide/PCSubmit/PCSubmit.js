@@ -8,7 +8,7 @@ const PCSubmit = ({ onClick, isDisabled = false, children }) => {
         className={`submit-button ${
           isDisabled ? "text-grayish" : "text-white"
         } ps-absolute`}
-        disabled={true}
+        disabled={isDisabled}
         onClick={() => onClick()}
       >
         {children}

@@ -5,7 +5,7 @@ import ticket_g from "../../images/ticket_g.png";
 import clock_g from "../../images/clock_g.png";
 import { getAllRides } from "../../api/FastRider";
 import Card from "../Card/Card";
-import { FormateDateTime } from "../../utils/dateUtils";
+import { FormateDateTime, setTimeOutHandler, SortByDate } from "../../utils/dateUtils";
 import "./RideCards.css";
 
 const RideCards = () => {
@@ -13,16 +13,24 @@ const RideCards = () => {
   const [rides, setRides] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
+    let tempData = [];
     const getRides = () => {
       getAllRides()
         .then((response) => {
           response.data.sort(function (a, b) {
             return a.id - b.id;
           });
+          tempData = [...response.data];
           setRides(response.data);
         })
         .finally(() => {
           setIsLoading(false);
+          let mostEarlyRide = tempData.sort((a, b) => {
+            return SortByDate(a.return_time, b.return_time);
+          });
+          setTimeOutHandler(mostEarlyRide[0].return_time, ()=> {
+            getRides();
+          }, 60000)
         });
     };
     getRides();

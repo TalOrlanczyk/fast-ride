@@ -3,11 +3,12 @@ import SubTitle from "./SubTitle/SubTitle";
 import Title from "./Title/Title";
 import './Card.css'
 import { IsMobile } from "../../utils/gadgetUtils";
+import clsx from "clsx";
 
 const Card = ({ children, handleOnClick, cardSizeClass, style }) => {
   return (
     <div
-      className={`card card-bg ${cardSizeClass ? cardSizeClass : ""} ${IsMobile()? "card-moblie":"card"}`}
+      className={clsx("card", "card-bg", [cardSizeClass ? cardSizeClass : ""] ,[IsMobile()? "card-moblie":""])}
       onClick={handleOnClick ? () => handleOnClick() : null}
       style={style}
     >

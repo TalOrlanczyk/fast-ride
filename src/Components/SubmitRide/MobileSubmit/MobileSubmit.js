@@ -28,7 +28,7 @@ const MobileSubmit = ({ onSubmit, isDisabled, children }) => {
         className={`Submit-mobile ${
           isDisabled ? "text-grayish" : "text-white"
         } ${isHide ? "hide" : "active"}`}
-        disabled={true}
+        disabled={isDisabled}
         onClick={() => onSubmit()}
       >
         {children}

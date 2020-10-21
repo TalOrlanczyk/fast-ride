@@ -61,9 +61,10 @@ const SubmitRide = () => {
         <div className="info text-white m-auto text-center">
           {TooltipSubmit()}
           <FontAwesomeIcon
-                  icon={faInfoCircle}
-                  color="white"
-                />
+            className="float-left"
+            icon={faInfoCircle}
+            color="white"
+          />
         </div>
       ) : null}
       <div className="text-center p1">

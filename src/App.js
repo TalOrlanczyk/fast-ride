@@ -7,6 +7,7 @@ import HomePage from "./Components/HomePage/HomePage";
 import { Redirect, Route, Switch } from "react-router-dom";
 import OrderTransaction from "./Components/OrderTransaction/OrderTransaction";
 import OpenDialog from "./Components/OpenDialog/OpenDialog";
+import { setTimeOutHandler } from "./utils/dateUtils";
 
 const { Provider } = PINandRideContext;
 const App = () => {
@@ -30,12 +31,10 @@ const App = () => {
   };
   const HandleSubmitedTickes = (returnTime) => {
     setOwnTickets(1);
-    let dateWaited = new Date(returnTime);
-    let milisecondToWait = dateWaited.getTime() - Date.now();
-    setTimeout(() => {
+    setTimeOutHandler(returnTime, ()=> {
       setOwnTickets(0);
       setRideID(0);
-    }, milisecondToWait);
+    })
   };
 
   const CheckifCloseTime = () => {
