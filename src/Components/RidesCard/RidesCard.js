@@ -6,22 +6,26 @@ import clock_g from "../../images/clock_g.png";
 import { getAllRides } from "../../api/FastRider";
 import Card from "../Card/Card";
 import { FormateDateTime } from "../../utils/dateUtils";
-import './RideCards.css';
+import "./RideCards.css";
 
 const RideCards = () => {
-  const { RideID, HandleIdUpdater, HandleOwnTicets } = useContext(
-    PINandRideContext
-  );
+  const { RideID, HandleIdUpdater } = useContext(PINandRideContext);
   const [rides, setRides] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    getAllRides()
-      .then((response) => {
-        setRides(response.data);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    const getRides = () => {
+      getAllRides()
+        .then((response) => {
+          response.data.sort(function (a, b) {
+            return a.id - b.id;
+          });
+          setRides(response.data);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    };
+    getRides();
   }, []);
 
   if (isLoading) return <Spiner />;
@@ -31,7 +35,11 @@ const RideCards = () => {
         <Card
           key={ride.id}
           handleOnClick={
-            ride.remaining_tickets !== 0 ? () => HandleIdUpdater(ride.id) : null
+            ride.remaining_tickets !== 0
+              ? RideID === 0
+                ? () => HandleIdUpdater(ride.id)
+                : () => HandleIdUpdater(0)
+              : null
           }
           style={
             RideID === ride.id

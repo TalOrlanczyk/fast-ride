@@ -8,7 +8,6 @@ import SubmitRide from "../SubmitRide/SubmitRide";
 import ExplainCard from "../ExplainCard/ExplainCard";
 
 const HomePage = () => {
-  const { PIN } = useContext(PINandRideContext);
   return (
     <div className="App">
       <div className="App-header p1 App-header-grid">
@@ -33,7 +32,7 @@ const HomePage = () => {
         />
         
       </div>
-      <SubmitRide />
+      <SubmitRide/>
       <RideCards />
     </div>
   );

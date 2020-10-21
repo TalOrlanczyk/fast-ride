@@ -33,7 +33,7 @@ const OpenDialog = ({ open, setOpen, PIN,CopyToClipboard }) => {
             <div className="card-title float-left ">
               <span>
                 <strong>Remember</strong> you need to keep this PIN code to
-                order the ticket
+                order the ticket (the PIN code inserted already and can change in any time)
               </span>
             </div>
           </div>

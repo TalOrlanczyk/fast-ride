@@ -1,7 +1,7 @@
 .input-height {
     width: 15vw;
     border: none;
-    padding: 0;
+    padding: 0 10px;
     font-weight: bold;
 }
 
@@ -10,13 +10,16 @@
     padding: 0;
     border: none;
     font-weight: bold;
-    height: 3rem;
 }
 
-.input-height{
+.input-height,.input-height-mobile{
     height: 3rem;
 }
-
-.input-height-mobile:focus{
-    height: 3rem;
+.info{
+    width: 20rem;
+    padding: .5rem;
+    background-color: rgb(3, 14, 24);
 }
+/* .input-height-mobile:focus{
+    height: 3rem;
+} */

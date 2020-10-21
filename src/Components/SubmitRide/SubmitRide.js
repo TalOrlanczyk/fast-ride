@@ -1,14 +1,23 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./SubmitRide.css";
 import { PINandRideContext } from "../../contextAPI/PinAndRideContext";
 import { IsMobile } from "../../utils/gadgetUtils";
 import MobileSubmit from "./MobileSubmit/MobileSubmit";
 import PCSubmit from "./PCSubmit/PCSubmit.js";
+import { useHistory } from "react-router-dom";
+import { isPinUnValid } from "../../utils/stringUtils";
+import submit from "../../images/submit.png";
+import submit_g from "../../images/submit_g.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
 const SubmitRide = () => {
-  const { PIN } = useContext(PINandRideContext);
+  const { PIN, RideID, ownTickects } = useContext(PINandRideContext);
   const [pinInput, setPinInput] = useState("");
-
+  let history = useHistory();
+  useEffect(() => {
+    setPinInput(PIN);
+  }, [PIN]);
   const pinInputHandler = (e) => {
     if (
       e.currentTarget.value.length === 2 ||
@@ -19,33 +28,74 @@ const SubmitRide = () => {
     else setPinInput(e.currentTarget.value);
   };
   const HandleDelete = (e) => {
+    let tempInput = pinInput;
     if (e.key === "Backspace")
       if (
         e.currentTarget.value.length === 3 ||
         e.currentTarget.value.length === 8 ||
         e.currentTarget.value.length === 13
       ) {
-        setPinInput(pinInput.substring(0, pinInput.length - 2));
+        setPinInput(tempInput.substring(0, tempInput.length - 2));
       }
   };
-
+  const handleSubmit = () => {
+    history.push({
+      pathname: "/SubmitedOrder",
+      state: { pinCode: pinInput },
+    });
+  };
+  const TooltipSubmit = () => {
+    if (ownTickects > 0)
+      return "can't have more then one tickte in a given time";
+    else if (isPinUnValid(pinInput)) return "Invalid PIN format";
+    else if (RideID === 0) return "please pick one ride to submit";
+    else return;
+  };
+  const checkIsDisabled = () => {
+    if (isPinUnValid(pinInput) || ownTickects > 0 || RideID === 0) return true;
+    else return false;
+  };
   return (
-    <div className="text-center p1">
-      <input
-        placeholder="PIN"
-        className={IsMobile() ? "input-height-mobile" : "input-height"}
-        value={pinInput}
-        onChange={(e) => pinInputHandler(e)}
-        maxLength={15}
-        onKeyUp={(e) => HandleDelete(e)}
-      />
-      {IsMobile() ? (
-        <MobileSubmit pinInput={pinInput} />
-      ) : (
-        <PCSubmit pinInput={pinInput} />
-      )}
-      {/* <MobileSubmit pinInput={pinInput} /> */}
-    </div>
+    <>
+      {checkIsDisabled() ? (
+        <div className="info text-white m-auto text-center">
+          {TooltipSubmit()}
+          <FontAwesomeIcon
+                  icon={faInfoCircle}
+                  color="white"
+                />
+        </div>
+      ) : null}
+      <div className="text-center p1">
+        <input
+          placeholder="PIN"
+          className={IsMobile() ? "input-height-mobile" : "input-height"}
+          value={pinInput}
+          onChange={(e) => pinInputHandler(e)}
+          maxLength={15}
+          onKeyUp={(e) => HandleDelete(e)}
+        />
+        {IsMobile() ? (
+          <MobileSubmit onClick={handleSubmit} isDisabled={checkIsDisabled()}>
+            Submit
+            {checkIsDisabled() ? (
+              <img className="image-small" src={submit_g} alt="submit icon" />
+            ) : (
+              <img className="image-small" src={submit} alt="submit icon" />
+            )}
+          </MobileSubmit>
+        ) : (
+          <PCSubmit onClick={handleSubmit} isDisabled={checkIsDisabled()}>
+            Submit
+            {checkIsDisabled() ? (
+              <img className="image-small" src={submit_g} alt="submit icon" />
+            ) : (
+              <img className="image-small" src={submit} alt="submit icon" />
+            )}
+          </PCSubmit>
+        )}
+      </div>
+    </>
   );
 };
 export default SubmitRide;

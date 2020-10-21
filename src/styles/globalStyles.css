@@ -1,5 +1,5 @@
 :root {
-  --grayish: rgb(101, 101, 101);
+  --grayish: #656565;
   --backgroundColor: #373737;
   --buttonColor: #4c4c4b;
 }
@@ -84,4 +84,12 @@
 
 .mt3 {
   margin-top: 3rem;
+}
+
+.ps-absolute{
+  position: absolute;
+}
+
+.m-auto{
+  margin: auto;
 }

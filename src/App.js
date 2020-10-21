@@ -4,10 +4,6 @@ import { ConvertToArray } from "./utils/numberUtils";
 import { getCalculationForASCII } from "./utils/stringUtils";
 import { PINandRideContext } from "./contextAPI/PinAndRideContext";
 import HomePage from "./Components/HomePage/HomePage";
-import OverlayDialog from "./Components/OverlayDialog/OverlayDialog";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClipboard, faTimes } from "@fortawesome/free-solid-svg-icons";
-import Tooltip from "./Components/Tooltip/Tooltip";
 import { Redirect, Route, Switch } from "react-router-dom";
 import OrderTransaction from "./Components/OrderTransaction/OrderTransaction";
 import OpenDialog from "./Components/OpenDialog/OpenDialog";
@@ -44,11 +40,11 @@ const App = () => {
 
   const CheckifCloseTime = () => {
     let currentDate = new Date();
-    let currentHourUTC = currentDate.getUTCHours();
-    if (currentHourUTC < 9 || currentHourUTC >= 19) setIsServiceClose(true);
+    let currentHour = currentDate.getHours();
+    if (currentHour < 9 || currentHour >= 19) setIsServiceClose(true);
   };
   useEffect(() => {
-    // CheckifCloseTime();
+    CheckifCloseTime();
     setPIN(PinGenerator());
   }, []);
 
@@ -67,7 +63,7 @@ const App = () => {
       setTimeout(() => {
         if (document.getElementById("PIN-Contanier"))
           document.getElementById("PIN-Contanier").removeChild(div);
-      }, 2000);
+      }, 2500);
     }
   };
   return (
