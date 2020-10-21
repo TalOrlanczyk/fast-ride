@@ -17,7 +17,7 @@ const OpenDialog = ({ PIN }) => {
     window.getSelection().removeAllRanges();
     if (!document.getElementById("Copied")) {
       let div = document.createElement("div");
-      div.innerHTML = "copy to clipboard";
+      div.innerHTML = "Copied to clipboard";
       div.id = "Copied";
       document.getElementById("PIN-Contanier").appendChild(div);
       setTimeout(() => {

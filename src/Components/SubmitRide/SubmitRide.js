@@ -8,9 +8,6 @@ import { useHistory } from "react-router-dom";
 import { isPinUnValid } from "../../utils/stringUtils";
 import submit from "../../images/submit.png";
 import submit_g from "../../images/submit_g.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import InfoSnackbar from "../InfoSnackbar/InfoSnackbar";
 
 const SubmitRide = () => {
   const { PIN, RideID, ownTickects } = useContext(PINandRideContext);
@@ -58,9 +55,6 @@ const SubmitRide = () => {
   };
   return (
     <>
-      {checkIsDisabled() ? (
-        <InfoSnackbar content={TooltipSubmit()}/>
-      ) : null}
       <div className="text-center p1">
         <input
           placeholder="PIN"

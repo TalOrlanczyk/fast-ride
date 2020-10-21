@@ -4,20 +4,20 @@ import "./MobileSubmit.css";
 const MobileSubmit = ({ onClick, isDisabled, children }) => {
   const [isHide, setIsHide] = useState(true);
   
+  let prev = 0;
   useEffect(() => {
-    let prev = 0;
-    const hideBar = () => {
-      if (window.scrollY > prev && window.scrollY >= 0) setIsHide(true);
-      else setIsHide(false);
-  
-      if (window.scrollY >= 0) prev = window.scrollY;
-    };
     window.addEventListener("scroll", () => hideBar());
 
     return () => {
       window.removeEventListener("scroll", () => hideBar());
     };
   }, []);
+  const hideBar = () => {
+    if (window.scrollY > prev && window.scrollY >= 0) setIsHide(true);
+    else setIsHide(false);
+
+    if (window.scrollY >= 0) prev = window.scrollY;
+  };
 
   return (
     <>
